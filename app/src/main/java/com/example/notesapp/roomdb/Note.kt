@@ -29,7 +29,8 @@ data class Note(                                                        // => "N
 val title: String
 
 
-we can specify column name as this as well but if we don't specify it as we did here, and std will implicitly consider the variable name to be the name of the column (which is alright btw)
+we can specify column name as this as well but if we don't specify it as we did here, and std will implicitly consider
+                        the variable name to be the name of the column (which is alright btw)
 
 
 
