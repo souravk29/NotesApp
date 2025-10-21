@@ -25,8 +25,8 @@ class NoteViewModel (private val repository: NotesRepository ): ViewModel() {   
     val allNotes: LiveData<List<Note>> = repository.allNotes
 
     fun insert (note: Note) =
-        viewModelScope.launch {                                                             // launch is coroutine builder, that launches new coroutine without blocking the current thread
-            repository.insertNote(note)
+        viewModelScope.launch {                                                             // launch is coroutine builder, that launches new coroutine
+            repository.insertNote(note)                                                     // without blocking the current thread.
         }
 
 }
