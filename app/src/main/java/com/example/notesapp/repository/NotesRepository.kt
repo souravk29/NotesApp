@@ -5,18 +5,6 @@ import com.example.notesapp.roomdb.Note
 import com.example.notesapp.roomdb.NoteDao
 
 
-/*
-
-Repository : Serves as a single source of truth  for data in our app ,
-             handling all data operations :  1. Fetching data from network
-                                             2. loading data from a local DB
-
-             repository acts as a mediator between the "ViewModel" and the data sources, providing a clean api for data ops ensuring clear
-             separation of concerns , it enhances flexibility and maintainability of code.
-
-val -> read only variable ******************
-
- */
 
 
 class NotesRepository (private val noteDao: NoteDao){                               // defining all methods in Dao, to combine all operation
@@ -29,6 +17,24 @@ class NotesRepository (private val noteDao: NoteDao){                           
 
 }
 
+
+
+
+
+
+
+/*
+
+Repository : Serves as a single source of truth  for data in our app ,
+             handling all data operations :  1. Fetching data from network
+                                             2. loading data from a local DB
+
+             repository acts as a mediator between the "ViewModel" and the data sources, providing a clean api for data ops ensuring clear
+             separation of concerns , it enhances flexibility and maintainability of code.
+
+val -> read only variable ******************
+
+ */
 
 
 
