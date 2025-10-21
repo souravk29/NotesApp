@@ -6,12 +6,16 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.FloatingActionButtonDefaults
+import androidx.compose.material3.ListItemDefaults.containerColor
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.graphics.toColorInt
 import androidx.lifecycle.ViewModel
@@ -19,6 +23,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.notesapp.repository.NotesRepository
 import com.example.notesapp.roomdb.Note
 import com.example.notesapp.roomdb.NotesDB
+import com.example.notesapp.screens.DisplayDialog
 import com.example.notesapp.screens.DisplayNotesList
 import com.example.notesapp.ui.theme.NotesAppTheme
 import com.example.notesapp.viewmodel.NoteViewModel
@@ -49,6 +54,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             NotesAppTheme {
 
+                Scaffold(
+                    floatingActionButton =
+                ) {  }
+
+
+
                 // Display all records in room DB
                 val notes by noteViewModel
                     .allNotes.observeAsState(emptyList())                          // "observeAsState()" : Converts a live data into a state
@@ -59,5 +70,19 @@ class MainActivity : ComponentActivity() {
             }
 
         }
+    }
+}
+
+
+@Composable
+fun MyFAB(viewModel: NoteViewModel) {
+    FloatingActionButton(
+        onclick = {
+            DisplayDialog(viewModel = )
+        },
+        containerColor = Color.Blue,
+        contentColor = Color.White,
+    ) {
+
     }
 }
