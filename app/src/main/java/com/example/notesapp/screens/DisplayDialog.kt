@@ -54,8 +54,8 @@ fun DisplayDialog(
                     onClick = {
                         var note = Note(
                             id = 0,
-                            title = "",
-                            description = "",
+                            title = title,
+                            description = description  ,
                             color = selectedColor.toArgb()                                              // Argb = alpha, red, green, blue
                         )
 
