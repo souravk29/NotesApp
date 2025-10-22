@@ -1,6 +1,7 @@
 package com.example.notesapp.screens
 
 
+import android.app.Dialog
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -23,7 +24,11 @@ import com.example.notesapp.viewmodel.NoteViewModel
 
 
 @Composable
-fun DisplayDialog(viewModel: NoteViewModel){
+fun DisplayDialog(
+    viewModel: NoteViewModel,
+    showDialog: Boolean,
+    onDismiss: () -> Unit
+    ){
 
     var title by remember {
         mutableStateOf("")
@@ -37,61 +42,68 @@ fun DisplayDialog(viewModel: NoteViewModel){
         mutableStateOf(Color.Blue)
     }
 
-    AlertDialog(
-        onDismissRequest = {
-            Button(
-                onClick = {}
 
 
-            ) {
-                Text(text = "Cancel")
-            }
-        },
-        confirmButton = {                                                                           // confirm button takes an composable, check by ctrl+left click
 
-            Button(
-                onClick = {
-                    var note = Note(
-                        id = 0,
-                        title = "",
-                        description = "",
-                        color = selectedColor.toArgb()                                              // Argb = alpha, red, green, blue
-                    )
+    if (showDialog) {
+        AlertDialog(
+            onDismissRequest = onDismiss,
+            confirmButton = {                                                                           // confirm button takes an composable, check by ctrl+left click
+
+                Button(
+                    onClick = {
+                        var note = Note(
+                            id = 0,
+                            title = "",
+                            description = "",
+                            color = selectedColor.toArgb()                                              // Argb = alpha, red, green, blue
+                        )
+
+                        // insert into the db
+                        viewModel.insert(note)
+
+                    }
+                ) {
+                    Text(text = "Save Note")
                 }
-            ) {
-                Text(text = "Save Note")
+
+            },
+            title = { Text(text = "Enter Note") },
+            text = {
+                Column {
+
+                    TextField(
+                        value = title,
+                        onValueChange = { title = it },
+                        label = { Text(text = "Note Title") }
+                    )
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    TextField(
+                        value = description,
+                        onValueChange = { description = it },
+                        label = { Text(text = "Note Description") }
+                    )
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    // Color components
+
+
+                }
+            },
+            dismissButton = {
+                Button(
+                    onClick = onDismiss
+                ) {
+                    Text(text = "Cancel")
+                }
             }
 
-        },
-        title = { Text(text = "Enter Note") },
-        text = {
-            Column {
 
-                TextField(
-                    value = title,
-                    onValueChange = {title = it},
-                    label = {Text(text = "Note Title")}
-                )
-
-                Spacer(modifier = Modifier.height(8.dp))
-
-                TextField(
-                    value = description,
-                    onValueChange = {description = it},
-                    label = {Text(text = "Note Description")}
-                )
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                // Color components
-
-
-            }
-        }
-
-
-
-    )
+        )
+    }
 
 
 }
