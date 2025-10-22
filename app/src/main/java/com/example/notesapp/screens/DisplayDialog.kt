@@ -89,6 +89,10 @@ fun DisplayDialog(
                     Spacer(modifier = Modifier.height(16.dp))
 
                     // Color components
+                    MyColorPicker(
+                    selectedColor = selectedColor,
+                    onColorSelected = { selectedColor = it }
+                    )
 
 
                 }
